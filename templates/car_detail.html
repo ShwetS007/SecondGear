@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ car.model_name }} - {{ car.mfg_year }}</h2>
+    <div class="row">
+        <!-- Car Image Section -->
+        <div class="col-md-6">
+            {% if car.car_img %}
+                <img src="{{ car.car_img.url }}" alt="{{ car.model_name }}" class="img-fluid" style="max-width: 100%; height: auto;">
+            {% else %}
+                <p>No image available.</p>
+            {% endif %}
+        </div>
+
+        <!-- Car Details Section -->
+        <div class="col-md-6">
+            <p><strong>Type:</strong> {{ car.car_type }}</p>
+            <p><strong>Kilometers Run:</strong> {{ car.km_run }} km</p>
+            <p><strong>Manufacturing Year:</strong> {{ car.mfg_year }}</p>
+            <p><strong>Seats:</strong> {{ car.no_of_seats }}</p>
+            <p><strong>Engine Type:</strong> {{ car.engine_type }}</p>
+            <p><strong>Price:</strong> ₹{{ car.price }}</p>
+            <p><strong>Fuel Type:</strong> {{ car.fuel_type }}</p>
+            <p><strong>Transmission:</strong> {{ car.transmission }}</p>
+            <p><strong>Owner Count:</strong> {{ car.owner_count }}</p>
+            <p><strong>Contact:</strong> {{ car.contact }}</p>
+
+            <!-- Additional Car Details -->
+            <p><strong>Color:</strong> {{ car.color }}</p>
+            <p><strong>Registration State:</strong> {{ car.registration_state }}</p>
+            <p><strong>Insurance Validity:</strong> {% if car.insurance_validity %} {{ car.insurance_validity|date:"d M, Y" }} {% else %} N/A {% endif %}</p>
+            <p><strong>Last Service Date:</strong> {% if car.last_service_date %} {{ car.last_service_date|date:"d M, Y" }} {% else %} N/A {% endif %}</p>
+            <p><strong>Description:</strong> {% if car.description %} {{ car.description }} {% else %} No description available. {% endif %}</p>
+
+            <!-- Featured and Sold Status -->
+            <p><strong>Featured:</strong> {% if car.is_featured %} Yes {% else %} No {% endif %}</p>
+            <p><strong>Sold:</strong> {% if car.is_sold %} Yes {% else %} No {% endif %}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
